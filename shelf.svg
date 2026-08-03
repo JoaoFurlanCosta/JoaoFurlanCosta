@@ -40,12 +40,12 @@
         
         <g transform="translate(240, 65)">
             <rect x="0" y="0" width="80" height="85" rx="3" fill="#161b22" stroke="#30363d" stroke-width="2"/>
-            <rect x="5" y="5" width="70" height="75" rx="2" fill="#6E7681"/>
+            <rect x="5" y="5" width="70" height="75" rx="2" fill="#3776AB"/>
             
             <rect x="10" y="15" width="60" height="55" rx="1" fill="#f0f6fc"/>
-            <line x1="10" y1="25" x2="70" y2="25" stroke="#6E7681" stroke-width="2"/>
+            <line x1="10" y1="25" x2="70" y2="25" stroke="#3776AB" stroke-width="2"/>
             
-            <text x="40" y="45" text-anchor="middle" class="vhs-label">Java</text>
+            <text x="40" y="45" text-anchor="middle" class="vhs-label">Python</text>
             <text x="40" y="60" text-anchor="middle" font-family="monospace" font-size="8" fill="#555">VHS-NTSC</text>
             
             <rect x="15" y="72" width="50" height="4" fill="#0d1117"/>
@@ -58,7 +58,7 @@
             <rect x="10" y="15" width="60" height="55" rx="1" fill="#f0f6fc"/>
             <line x1="10" y1="25" x2="70" y2="25" stroke="#6E7681" stroke-width="2"/>
             
-            <text x="40" y="45" text-anchor="middle" class="vhs-label">CMake</text>
+            <text x="40" y="45" text-anchor="middle" class="vhs-label">Java</text>
             <text x="40" y="60" text-anchor="middle" font-family="monospace" font-size="8" fill="#555">VHS-NTSC</text>
             
             <rect x="15" y="72" width="50" height="4" fill="#0d1117"/>
@@ -66,12 +66,12 @@
         
         <g transform="translate(440, 65)">
             <rect x="0" y="0" width="80" height="85" rx="3" fill="#161b22" stroke="#30363d" stroke-width="2"/>
-            <rect x="5" y="5" width="70" height="75" rx="2" fill="#E34F26"/>
+            <rect x="5" y="5" width="70" height="75" rx="2" fill="#6E7681"/>
             
             <rect x="10" y="15" width="60" height="55" rx="1" fill="#f0f6fc"/>
-            <line x1="10" y1="25" x2="70" y2="25" stroke="#E34F26" stroke-width="2"/>
+            <line x1="10" y1="25" x2="70" y2="25" stroke="#6E7681" stroke-width="2"/>
             
-            <text x="40" y="45" text-anchor="middle" class="vhs-label">HTML</text>
+            <text x="40" y="45" text-anchor="middle" class="vhs-label">CMake</text>
             <text x="40" y="60" text-anchor="middle" font-family="monospace" font-size="8" fill="#555">VHS-NTSC</text>
             
             <rect x="15" y="72" width="50" height="4" fill="#0d1117"/>
