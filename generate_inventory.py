@@ -49,9 +49,6 @@ def generate_inventory_svg():
       "Python": (
           "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/Python-Dark.svg"
       ),
-      "Steam": (
-          "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/Steam-Dark.svg"
-      ),
       "YOLO": "assets/yolo.png",
       "RPG": "assets/rpg.png",
       "Steam": "assets/steam.png",
