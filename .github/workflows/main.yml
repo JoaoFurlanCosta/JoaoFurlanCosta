@@ -26,10 +26,10 @@ jobs:
         env:
           GH_USERNAME: ${{ github.repository_owner }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
-          # Executa os scripts python
-          python .github/scripts/generate_shelf.py || python generate_shelf.py
-          python .github/scripts/generate_inventory.py || python generate_inventory.py
+          python generate_shelf.py
+          python generate_inventory.py
 
       - name: Commit and Push SVGs
         run: |
