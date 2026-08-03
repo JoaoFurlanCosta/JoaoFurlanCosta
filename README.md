@@ -20,5 +20,5 @@
 </div>
 
 <div align="center">
-  <img src="./inventory.svg" alt="Inventário de RPG" width="100%" />
+  <img src="./inventory.svg?v=1" alt="Inventário de RPG" width="100%" />
 </div>
