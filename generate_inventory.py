@@ -4,7 +4,7 @@ def generate_inventory_svg():
     width = 750
     height = 420
 
-    GH_REPO = os.environ.get("GITHUB_REPOSITORY", "seu-usuario/seu-usuario")
+    GH_REPO = os.environ.get("GITHUB_REPOSITORY", "seu-usuario/seu-repositorio")
     BRANCH = "main" 
 
     RAW_BASE_URL = f"https://raw.githubusercontent.com/{GH_REPO}/{BRANCH}/assets"
@@ -17,7 +17,7 @@ def generate_inventory_svg():
         "Python": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/Python-Dark.svg",
         "YOLO": f"{RAW_BASE_URL}/yolo.png",
         "RPG": f"{RAW_BASE_URL}/rpg.png", 
-        "Steam": "https://github.com/Templarian/MaterialDesign/blob/master/svg/steam.svg"
+        "Steam": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/Steam-Dark.svg"
     }
 
     items = [
@@ -111,7 +111,7 @@ def generate_inventory_svg():
             if logo_name in LOGOS:
                 logo_url = LOGOS[logo_name]
                 svg += f'''
-            <image href="{logo_url}" x="{logo_x - logo_size}" y="{logo_y - logo_size/2}" width="{logo_size}" height="{logo_size}" />
+            <image href="{logo_url}" x="{logo_x - logo_size}" y="{logo_y - logo_size/2}" width="{logo_size}" height="{logo_size}" preserveAspectRatio="xMidYMid meet" />
                 '''
                 logo_x -= (logo_size + logo_spacing)
 
