@@ -22,3 +22,19 @@
 <div align="center">
   <img src="https://raw.githubusercontent.com/JoaoFurlanCosta/JoaoFurlanCosta/main/inventory.svg?v=1" alt="Inventário de RPG" width="100%" />
 </div>
+
+<div align="center">
+  <img src="./about.svg?v=1" alt="Sobre Mim" width="100%" />
+
+  <br />
+
+  <a href="https://www.linkedin.com/in/SEU_USUARIO" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>
+  <a href="https://github.com/SEU_USUARIO" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" />
+  </a>
+  <a href="mailto:SEU_EMAIL@gmail.com">
+    <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
+  </a>
+</div>

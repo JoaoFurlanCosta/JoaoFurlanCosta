@@ -120,6 +120,14 @@ def generate_inventory_svg():
           "rarity_color": "#ffb86c",
           "stats": "IA Aplicada & Sistemas Full-Stack",
       },
+      {
+            "slot": "🎮 SIDE QUESTS",
+            "name": "Multi-Gaming & RPG",
+            "logos": ["Steam", "RPG"],
+            "rarity": "REPETÍVEL",
+            "rarity_color": "#a0a0a0",
+            "stats": "Conquistas na Steam, filmes & D&D"
+        },
   ]
 
   svg = f"""<svg width="{width}" height="{height}" viewBox="0 0 {width} {height}" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
