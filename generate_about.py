@@ -39,39 +39,52 @@ def get_image_data_uri(source):
 
 def generate_about_svg():
   width = 750
-  height = 320
+  height = 480 
 
   topics = [
       {
           "icon": "🎓",
           "title": "Formação",
-          "desc": "Análise e Desenvolvimento de Sistemas - FEMA (3º ano / 3).",
+          "lines": [
+              "Análise e Desenvolvimento de Sistemas - FEMA (3º ano / 3).",
+              "Bacharelado em Publicidade e Propaganda - FEMA (2019-2022).",
+              "Técnico em Administração - ETEC (2015-2016).",
+          ],
       },
       {
           "icon": "🚀",
           "title": "Experiência",
-          "desc": (
-              "Estagiário no Hub de Inovação FEMA (Sistemas & mídias"
-              " institucionais)."
-          ),
+          "lines": [
+              (
+                  "Estagiário no Hub de Inovação FEMA (Sistemas & Mídia)"
+                  " - 2024-2026."
+              ),
+              "Roteirista e Editor de Vídeos Freelancer - (2022-2024).",
+              (
+                  "Estagiário TV FEMA (Edição, Roteiro e Produção) -"
+                  " 2019-2022."
+              ),
+          ],
       },
       {
           "icon": "🔮",
           "title": "Foco Atual (TCC)",
-          "desc": "Treinamento de modelos YOLO e Visão Computacional.",
+          "lines": ["Treinamento de modelos YOLO e Visão Computacional."],
       },
       {
           "icon": "📋",
           "title": "Metodologias",
-          "desc": "Vivência prática com Kanban, Scrum e Engenharia de Requisitos.",
+          "lines": [
+              "Vivência prática com Kanban, Scrum e Engenharia de Requisitos."
+          ],
       },
       {
           "icon": "💡",
           "title": "Mindset",
-          "desc": (
+          "lines": [
               "Sempre buscando aprender e explorar novas linguagens e"
               " frameworks."
-          ),
+          ],
       },
   ]
 
@@ -116,30 +129,46 @@ def generate_about_svg():
     <line x1="25" y1="48" x2="725" y2="48" stroke="#44475a" stroke-width="1" stroke-dasharray="4 4"/>
     """
 
-  start_y = 75
-  line_height = 32
+  current_y = 75
 
-  for i, topic in enumerate(topics):
-    y = start_y + (i * line_height)
-    clean_desc = topic["desc"].replace("&", "&amp;")
+  for topic in topics:
     clean_title = topic["title"].replace("&", "&amp;")
 
     svg += f"""
-        <g transform="translate(25, {y})">
+        <g transform="translate(25, {current_y})">
             <text x="0" y="0" class="bullet-icon">{topic['icon']}</text>
             <text x="28" y="-1" class="topic-title">{clean_title}:</text>
-            <text x="{35 + (len(clean_title) * 8.5)}" y="-1" class="topic-desc">{clean_desc}</text>
         </g>
         """
 
-  svg += """
-    <line x1="25" y1="242" x2="725" y2="242" stroke="#44475a" stroke-width="1" stroke-dasharray="2 2"/>
-    <text x="25" y="278" class="section-sub">🌐 ONDE ME ENCONTRAR:</text>
+    title_width = 35 + (len(clean_title) * 8.5)
+
+    for idx, line in enumerate(topic["lines"]):
+      clean_line = line.replace("&", "&amp;")
+
+      if idx == 0:
+        svg += f"""
+                <text x="{title_width + 25}" y="{current_y - 1}" class="topic-desc">{clean_line}</text>
+                """
+      else:
+        current_y += 22
+        svg += f"""
+                <text x="60" y="{current_y - 1}" class="topic-desc">▸ {clean_line}</text>
+                """
+
+    current_y += 28
+
+  footer_line_y = height - 50
+  footer_text_y = height - 18
+  social_y = height - 34
+
+  svg += f"""
+    <line x1="25" y1="{footer_line_y}" x2="725" y2="{footer_line_y}" stroke="#44475a" stroke-width="1" stroke-dasharray="2 2"/>
+    <text x="25" y="{footer_text_y}" class="section-sub">🌐 ONDE ME ENCONTRAR:</text>
   """
 
   social_x = 240
-  social_y = 260
-  icon_size = 26
+  icon_size = 24
   spacing = 15
 
   for name, data_uri in SOCIAL_DATA.items():
