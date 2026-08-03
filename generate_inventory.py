@@ -102,7 +102,7 @@ def generate_inventory_svg():
           "logos": ["Python", "YOLO"],
           "rarity": "ÉPICO",
           "rarity_color": "#bd93f9",
-          "stats": "Detecção de Objetos & CNNs em vídeo",
+          "stats": "Detecção de Objetos & CNNs",
       },
       {
           "slot": "🧪 POTION",
@@ -168,13 +168,13 @@ def generate_inventory_svg():
 
             <text x="18" y="48" class="item-name">{clean_name}</text>
 
-            <text x="18" y="70" class="item-stats">⚡ {clean_stats}</text>
+            <text x="18" y="73" class="item-stats">⚡ {clean_stats}</text>
             """
 
-    logo_x = 320
-    logo_y = 65
-    logo_size = 22
-    logo_spacing = 12
+    logo_x = 325
+    logo_y = 70
+    logo_size = 20
+    logo_spacing = 8
 
     for logo_name in item["logos"]:
       if logo_name in LOGOS_DATA and LOGOS_DATA[logo_name]:
