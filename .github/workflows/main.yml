@@ -22,7 +22,7 @@ jobs:
       - name: Install Dependencies
         run: pip install requests
 
-      - name: Generate Shelf and Inventory SVGs
+      - name: Generate SVGs
         env:
           GH_USERNAME: ${{ github.repository_owner }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -30,10 +30,11 @@ jobs:
         run: |
           python generate_shelf.py
           python generate_inventory.py
+          python generate_about.py
 
       - name: Commit and Push SVGs
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add shelf.svg inventory.svg
-          git diff --quiet && git diff --staged --quiet || (git commit -m "update: atualizado estante e inventario SVG" && git push)
+          git add shelf.svg inventory.svg about.svg
+          git diff --quiet && git diff --staged --quiet || (git commit -m "update: atualizados svgs do perfil" && git push)
