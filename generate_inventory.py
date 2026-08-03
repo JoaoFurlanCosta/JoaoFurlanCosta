@@ -4,16 +4,36 @@ import requests
 
 
 def get_image_data_uri(source):
-  """Converte uma URL ou um arquivo local em Data URI Base64 seguro para o GitHub."""
+  """Converte uma URL ou arquivo local em Data URI Base64 estritamente válido."""
   try:
-    if os.path.exists(source):
-      mime = "image/png" if source.endswith(".png") else "image/svg+xml"
-      with open(source, "rb") as f:
-        b64 = base64.b64encode(f.read()).decode("utf-8")
-        return f"data:{mime};base64,{b64}"
+    if not source.startswith("http"):
+      possible_paths = [
+          source,
+          os.path.join(os.path.dirname(__file__), "..", "..", source),
+          os.path.join(os.getcwd(), source),
+      ]
 
-    elif source.startswith("http"):
-      res = requests.get(source, timeout=5)
+      file_path = None
+      for p in possible_paths:
+        if os.path.exists(p) and os.path.isfile(p):
+          file_path = p
+          break
+
+      if file_path:
+        mime = "image/png" if file_path.endswith(".png") else "image/svg+xml"
+        with open(file_path, "rb") as f:
+          b64 = base64.b64encode(f.read()).decode("utf-8")
+          return f"data:{mime};base64,{b64}"
+      else:
+        print(
+            f"❌ Arquivo local não encontrado: {source} (tentou em: {possible_paths})"
+        )
+        return None
+
+    else:
+      res = requests.get(
+          source, headers={"User-Agent": "Mozilla/5.0"}, timeout=10
+      )
       if res.status_code == 200:
         content_type = res.headers.get("Content-Type", "")
         mime = (
@@ -23,8 +43,11 @@ def get_image_data_uri(source):
         )
         b64 = base64.b64encode(res.content).decode("utf-8")
         return f"data:{mime};base64,{b64}"
+      else:
+        print(f"❌ Falha ao baixar {source} - Status: {res.status_code}")
+
   except Exception as e:
-    print(f"Aviso: Não foi possível carregar a imagem '{source}': {e}")
+    print(f"❌ Erro ao processar '{source}': {e}")
 
   return None
 
@@ -49,19 +72,20 @@ def generate_inventory_svg():
       "Python": (
           "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/Python-Dark.svg"
       ),
-      "Steam": (
-          "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/Steam-Dark.svg"
-      ),
       "YOLO": "assets/yolo.png",
       "RPG": "assets/rpg.png",
       "Steam": "assets/steam.png",
   }
 
   LOGOS_DATA = {}
+  print("--- Carregando Imagens para Base64 ---")
   for name, source in LOGOS_SOURCES.items():
     data_uri = get_image_data_uri(source)
     if data_uri:
       LOGOS_DATA[name] = data_uri
+      print(f"✅ {name} carregado com sucesso.")
+    else:
+      print(f"⚠️ {name} falhou ao carregar!")
 
   items = [
       {
@@ -142,7 +166,6 @@ def generate_inventory_svg():
             <text x="18" y="48" class="item-name">{item['name']}</text>
 
             <text x="18" y="70" class="item-stats">⚡ {item['stats']}</text>
-
             """
 
     logo_x = 315
@@ -154,7 +177,7 @@ def generate_inventory_svg():
       if logo_name in LOGOS_DATA:
         img_data_uri = LOGOS_DATA[logo_name]
         svg += f"""
-            <image href="{img_data_uri}" x="{logo_x - logo_size}" y="{logo_y - logo_size/2}" width="{logo_size}" height="{logo_size}" preserveAspectRatio="xMidYMid meet" />
+            <image href="{img_data_uri}" xlink:href="{img_data_uri}" x="{logo_x - logo_size}" y="{logo_y - logo_size/2}" width="{logo_size}" height="{logo_size}" preserveAspectRatio="xMidYMid meet" />
                 """
         logo_x -= logo_size + logo_spacing
 
@@ -165,8 +188,3 @@ def generate_inventory_svg():
   svg += "</svg>"
 
   with open("inventory.svg", "w", encoding="utf-8") as f:
-    f.write(svg)
-
-
-if __name__ == "__main__":
-  generate_inventory_svg()
