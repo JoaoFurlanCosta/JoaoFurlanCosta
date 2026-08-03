@@ -83,7 +83,7 @@ def generate_about_svg():
 SOCIAL_LINKS = {
         "LinkedIn": "https://www.linkedin.com/in/joaovitorfurlancosta/",
         "GitHub": "https://github.com/JoaoFurlanCosta",
-        "Gmail": "mailto:joaovitorfurlandacosta@gmail.com",
+        "Gmail": "mailto:joaovitorfurlandacosta@hotmail.com",
     }
 
 SOCIAL_SOURCES = {
