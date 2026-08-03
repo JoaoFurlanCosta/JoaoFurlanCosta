@@ -2,7 +2,7 @@
 
   <h1 align="center">
     <code>Seja bem-vindo!</code><br>
-    <img src="https://readme-typing-svg.demolab.com?font=Monoton&size=38&duration=1&pause=1&color=#1186F7FF&center=true&vCenter=true&width=500&height=60&lines=JO%C3%83O+FURLAN" alt="Nome em Neon" />
+    <img src="https://readme-typing-svg.demolab.com?font=Monoton&size=38&duration=1&pause=1&color=1186F7FF&center=true&vCenter=true&width=500&height=60&lines=JO%C3%83O+FURLAN" alt="Nome em Neon" />
   </h1>
 
   <a href="https://git.io/typing-svg">
