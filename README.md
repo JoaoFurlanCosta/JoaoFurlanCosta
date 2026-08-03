@@ -1,16 +1,24 @@
-## Hi there 👋
+<div align="center">
 
-<!--
-**JoaoFurlanCosta/JoaoFurlanCosta** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+  <h1 align="center">
+    <code>Seja bem-vindo!</code><br>
+    <img src="https://readme-typing-svg.demolab.com?font=Monoton&size=38&duration=1&pause=1&color=1186F7FF&center=true&vCenter=true&width=500&height=60&lines=JO%C3%83O+FURLAN+COSTA" alt="Nome em Neon" />
+  </h1>
 
-Here are some ideas to get you started:
+  <a href="https://git.io/typing-svg">
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=18&duration=3000&pause=1000&color=BD93F9&center=true&vCenter=true&width=600&height=40&lines=Desenvolvedor+Full+Stack+%26+Entusiasta+de+IA;" alt="Frases Dinâmicas" />
+  </a>
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+  <br>
+
+  <p>🍿 ────────────────────────────────────────────────── 🍿</p>
+
+</div>
+
+<div align="center">
+  <img src="./shelf.svg" alt="Minha Estante de Locadora" width="100%" />
+</div>
+
+<div align="center">
+  <img src="./inventory.svg" alt="Inventário de RPG" width="100%" />
+</div>
