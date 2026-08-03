@@ -185,6 +185,13 @@ def generate_inventory_svg():
         </g>
         """
 
-  svg += "</svg>"
+    svg += "</svg>"
 
-  with open("inventory.svg", "w", encoding="utf-8") as f:
+    with open("inventory.svg", "w", encoding="utf-8") as f:
+        f.write(svg)
+
+    print("--- SVG gerado com sucesso em inventory.svg ---")
+
+
+if __name__ == "__main__":
+    generate_inventory_svg()
