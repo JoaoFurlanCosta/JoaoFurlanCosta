@@ -1,0 +1,44 @@
+name: Autoupdate VHS Shelf
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install Dependencies
+        run: pip install requests
+
+      - name: Generate Shelf SVG
+        env:
+          GH_USERNAME: ${{ github.repository_owner }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Procura o arquivo python onde quer que ele esteja no repo
+          PY_FILE=$(find . -name "generate_shelf.py" -print -quit)
+          if [ -n "$PY_FILE" ]; then
+            python "$PY_FILE"
+          else
+            echo "Erro: generate_shelf.py nao foi encontrado!"
+            exit 1
+          fi
+
+      - name: Commit and Push SVG
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add shelf.svg
+          git diff --quiet && git diff --staged --quiet || (git commit -m "update: estante de VHS atualizada" && git push)
