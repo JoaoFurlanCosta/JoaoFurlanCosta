@@ -54,6 +54,7 @@ def generate_inventory_svg():
       ),
       "YOLO": "assets/yolo.png",
       "RPG": "assets/rpg.png",
+      "Steam": "assets/steam.png",
   }
 
   LOGOS_DATA = {}
