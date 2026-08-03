@@ -1,0 +1,79 @@
+<svg width="600" height="200" viewBox="0 0 600 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        .title { font-family: 'Courier New', monospace; font-weight: bold; fill: #f0f6fc; font-size: 14px; }
+        .vhs-label { font-family: 'Courier New', monospace; font-weight: bold; font-size: 11px; fill: #111; }
+        .shelf-wood { fill: #3d2314; stroke: #24140a; stroke-width: 3; }
+    </style>
+    
+    <rect width="600" height="200" fill="#0d1117" rx="8"/>
+    
+    <text x="20" y="30" class="title" fill="#ff79c6">📼 LOCADORA DEV - SELEÇÃO DO MÊS</text>
+    
+    <rect x="20" y="150" width="560" height="15" rx="2" class="shelf-wood"/>
+    <rect x="20" y="165" width="560" height="8" fill="#1b0f08"/>
+    
+        <g transform="translate(40, 65)">
+            <rect x="0" y="0" width="80" height="85" rx="3" fill="#161b22" stroke="#30363d" stroke-width="2"/>
+            <rect x="5" y="5" width="70" height="75" rx="2" fill="#00599C"/>
+            
+            <rect x="10" y="15" width="60" height="55" rx="1" fill="#f0f6fc"/>
+            <line x1="10" y1="25" x2="70" y2="25" stroke="#00599C" stroke-width="2"/>
+            
+            <text x="40" y="45" text-anchor="middle" class="vhs-label">C++</text>
+            <text x="40" y="60" text-anchor="middle" font-family="monospace" font-size="8" fill="#555">VHS-NTSC</text>
+            
+            <rect x="15" y="72" width="50" height="4" fill="#0d1117"/>
+        </g>
+        
+        <g transform="translate(140, 65)">
+            <rect x="0" y="0" width="80" height="85" rx="3" fill="#161b22" stroke="#30363d" stroke-width="2"/>
+            <rect x="5" y="5" width="70" height="75" rx="2" fill="#6E7681"/>
+            
+            <rect x="10" y="15" width="60" height="55" rx="1" fill="#f0f6fc"/>
+            <line x1="10" y1="25" x2="70" y2="25" stroke="#6E7681" stroke-width="2"/>
+            
+            <text x="40" y="45" text-anchor="middle" class="vhs-label">C</text>
+            <text x="40" y="60" text-anchor="middle" font-family="monospace" font-size="8" fill="#555">VHS-NTSC</text>
+            
+            <rect x="15" y="72" width="50" height="4" fill="#0d1117"/>
+        </g>
+        
+        <g transform="translate(240, 65)">
+            <rect x="0" y="0" width="80" height="85" rx="3" fill="#161b22" stroke="#30363d" stroke-width="2"/>
+            <rect x="5" y="5" width="70" height="75" rx="2" fill="#6E7681"/>
+            
+            <rect x="10" y="15" width="60" height="55" rx="1" fill="#f0f6fc"/>
+            <line x1="10" y1="25" x2="70" y2="25" stroke="#6E7681" stroke-width="2"/>
+            
+            <text x="40" y="45" text-anchor="middle" class="vhs-label">Java</text>
+            <text x="40" y="60" text-anchor="middle" font-family="monospace" font-size="8" fill="#555">VHS-NTSC</text>
+            
+            <rect x="15" y="72" width="50" height="4" fill="#0d1117"/>
+        </g>
+        
+        <g transform="translate(340, 65)">
+            <rect x="0" y="0" width="80" height="85" rx="3" fill="#161b22" stroke="#30363d" stroke-width="2"/>
+            <rect x="5" y="5" width="70" height="75" rx="2" fill="#6E7681"/>
+            
+            <rect x="10" y="15" width="60" height="55" rx="1" fill="#f0f6fc"/>
+            <line x1="10" y1="25" x2="70" y2="25" stroke="#6E7681" stroke-width="2"/>
+            
+            <text x="40" y="45" text-anchor="middle" class="vhs-label">CMake</text>
+            <text x="40" y="60" text-anchor="middle" font-family="monospace" font-size="8" fill="#555">VHS-NTSC</text>
+            
+            <rect x="15" y="72" width="50" height="4" fill="#0d1117"/>
+        </g>
+        
+        <g transform="translate(440, 65)">
+            <rect x="0" y="0" width="80" height="85" rx="3" fill="#161b22" stroke="#30363d" stroke-width="2"/>
+            <rect x="5" y="5" width="70" height="75" rx="2" fill="#E34F26"/>
+            
+            <rect x="10" y="15" width="60" height="55" rx="1" fill="#f0f6fc"/>
+            <line x1="10" y1="25" x2="70" y2="25" stroke="#E34F26" stroke-width="2"/>
+            
+            <text x="40" y="45" text-anchor="middle" class="vhs-label">HTML</text>
+            <text x="40" y="60" text-anchor="middle" font-family="monospace" font-size="8" fill="#555">VHS-NTSC</text>
+            
+            <rect x="15" y="72" width="50" height="4" fill="#0d1117"/>
+        </g>
+        </svg>
