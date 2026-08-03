@@ -4,35 +4,14 @@ import requests
 
 
 def get_image_data_uri(source):
-  """Converte uma URL ou arquivo local em Data URI Base64 estritamente válido."""
+  """Tenta converter uma imagem local ou remota em Data URI Base64 válida.
+
+  Se falhar, retorna None sem quebrar a aplicação.
+  """
   try:
-    if not source.startswith("http"):
-      possible_paths = [
-          source,
-          os.path.join(os.path.dirname(__file__), "..", "..", source),
-          os.path.join(os.getcwd(), source),
-      ]
-
-      file_path = None
-      for p in possible_paths:
-        if os.path.exists(p) and os.path.isfile(p):
-          file_path = p
-          break
-
-      if file_path:
-        mime = "image/png" if file_path.endswith(".png") else "image/svg+xml"
-        with open(file_path, "rb") as f:
-          b64 = base64.b64encode(f.read()).decode("utf-8")
-          return f"data:{mime};base64,{b64}"
-      else:
-        print(
-            f"❌ Arquivo local não encontrado: {source} (tentou em: {possible_paths})"
-        )
-        return None
-
-    else:
+    if source.startswith("http"):
       res = requests.get(
-          source, headers={"User-Agent": "Mozilla/5.0"}, timeout=10
+          source, headers={"User-Agent": "Mozilla/5.0"}, timeout=5
       )
       if res.status_code == 200:
         content_type = res.headers.get("Content-Type", "")
@@ -43,11 +22,24 @@ def get_image_data_uri(source):
         )
         b64 = base64.b64encode(res.content).decode("utf-8")
         return f"data:{mime};base64,{b64}"
-      else:
-        print(f"❌ Falha ao baixar {source} - Status: {res.status_code}")
+
+    else:
+      possible_paths = [
+          source,
+          os.path.join(os.getcwd(), source),
+          os.path.join(os.path.dirname(__file__), source),
+          os.path.join(os.path.dirname(__file__), "..", source),
+      ]
+
+      for p in possible_paths:
+        if os.path.exists(p) and os.path.isfile(p):
+          mime = "image/png" if p.endswith(".png") else "image/svg+xml"
+          with open(p, "rb") as f:
+            b64 = base64.b64encode(f.read()).decode("utf-8")
+            return f"data:{mime};base64,{b64}"
 
   except Exception as e:
-    print(f"❌ Erro ao processar '{source}': {e}")
+    print(f"⚠️ Erro ao carregar imagem {source}: {e}")
 
   return None
 
@@ -78,14 +70,14 @@ def generate_inventory_svg():
   }
 
   LOGOS_DATA = {}
-  print("--- Carregando Imagens para Base64 ---")
+  print("--- Processando Imagens ---")
   for name, source in LOGOS_SOURCES.items():
-    data_uri = get_image_data_uri(source)
-    if data_uri:
-      LOGOS_DATA[name] = data_uri
-      print(f"✅ {name} carregado com sucesso.")
+    uri = get_image_data_uri(source)
+    if uri:
+      LOGOS_DATA[name] = uri
+      print(f"✅ {name} convertido para Base64 com sucesso.")
     else:
-      print(f"⚠️ {name} falhou ao carregar!")
+      print(f"❌ {name} FALHOU (será omitido para não quebrar o SVG).")
 
   items = [
       {
@@ -142,7 +134,7 @@ def generate_inventory_svg():
 
     <rect width="{width}" height="{height}" fill="#0d1117" rx="10" stroke="#44475a" stroke-width="2"/>
     
-    <text x="25" y="35" class="header-title">🎒 INVENTÁRIO DO AVENTUREIRO (EQUIPAMENTOS & SKILLS)</text>
+    <text x="25" y="35" class="header-title">🎒 INVENTÁRIO DO AVENTUREIRO (EQUIPAMENTOS &amp; SKILLS)</text>
     <line x1="25" y1="48" x2="725" y2="48" stroke="#44475a" stroke-width="1" stroke-dasharray="4 4"/>
     """
 
@@ -152,6 +144,9 @@ def generate_inventory_svg():
 
     x = 25 + (col * 355)
     y = 65 + (row * 110)
+
+    clean_name = item["name"].replace("&", "&amp;")
+    clean_stats = item["stats"].replace("&", "&amp;")
 
     svg += f"""
         <g transform="translate({x}, {y})">
@@ -163,9 +158,9 @@ def generate_inventory_svg():
             <rect x="235" y="12" width="95" height="16" fill="#21262d" rx="4"/>
             <text x="282" y="24" class="rarity-tag" fill="{item['rarity_color']}" text-anchor="middle">{item['rarity']}</text>
 
-            <text x="18" y="48" class="item-name">{item['name']}</text>
+            <text x="18" y="48" class="item-name">{clean_name}</text>
 
-            <text x="18" y="70" class="item-stats">⚡ {item['stats']}</text>
+            <text x="18" y="70" class="item-stats">⚡ {clean_stats}</text>
             """
 
     logo_x = 315
@@ -174,7 +169,7 @@ def generate_inventory_svg():
     logo_spacing = 6
 
     for logo_name in item["logos"]:
-      if logo_name in LOGOS_DATA:
+      if logo_name in LOGOS_DATA and LOGOS_DATA[logo_name]:
         img_data_uri = LOGOS_DATA[logo_name]
         svg += f"""
             <image href="{img_data_uri}" xlink:href="{img_data_uri}" x="{logo_x - logo_size}" y="{logo_y - logo_size/2}" width="{logo_size}" height="{logo_size}" preserveAspectRatio="xMidYMid meet" />
@@ -185,13 +180,13 @@ def generate_inventory_svg():
         </g>
         """
 
-    svg += "</svg>"
+  svg += "</svg>"
 
-    with open("inventory.svg", "w", encoding="utf-8") as f:
-        f.write(svg)
+  with open("inventory.svg", "w", encoding="utf-8") as f:
+    f.write(svg)
 
-    print("--- SVG gerado com sucesso em inventory.svg ---")
+  print("--- Finalizado com Sucesso! ---")
 
 
 if __name__ == "__main__":
-    generate_inventory_svg()
+  generate_inventory_svg()
